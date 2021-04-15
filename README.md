@@ -8,7 +8,6 @@ Simple and strict, yet powerful object mapping made possible by Swift 2's error 
 
 
 ```swift
-
 struct Repository {
     let name: String
     let description: String
@@ -164,7 +163,7 @@ Date.decoder = Date.decoder(using: formatter)
 
 ## When `Decodable` isn't enough
 Don't be afraid of not conforming to `Decodable`.
-```swift
+```
 let array = try NSArray.decode(json => "list").map {
     try Contribution(json: $0, repository: repo)
 }
@@ -178,17 +177,6 @@ let array = try NSArray.decode(json => "list").map {
 
 | Swift version | Compatible tag or branch |
 | --- | --- |
-| Swift 4.0 | `0.6.0` |
 | Swift 3.0 | `v0.5` |
 | Swift 2.3 | `v0.4.4`|
 | Swift 2.2 | `v0.4.3`|
-
-## Note on Swift 4.0 usage
-Due to collisions with the standard library you will have to import ambiguous symbols specifically, in addition to `Decodable` as a whole.
-
-This means you likely want the following
-```swift
-import Decodable
-import protocol Decodable.Decodable
-```
-and you can import other symbols, e.g `KeyPath`, `DecodingError`, in a simlilar fashion (using `import struct` and `import enum`)
